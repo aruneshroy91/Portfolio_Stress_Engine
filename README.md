@@ -65,3 +65,39 @@ portfolio-stress-engine/
 - Scenario-based revaluation (not pricing models)
 - Regime-aware tail risk amplification
 - Capital & risk appetite focused outputs
+
+
+## Project Structure (Logical View)
+
+```text
+┌───────────────────────────────┐
+│         Market Data           │
+│   (FRED, Yahoo Finance)       │
+└───────────────┬───────────────┘
+                ↓
+┌───────────────────────────────┐
+│        Data Loader             │
+│   src/data/data_loader.py      │
+└───────────────┬───────────────┘
+                ↓
+┌───────────────────────────────┐
+│   Valuation Layer (QuantLib)  │
+│   curve_builder.py            │
+│   pricing_engine.py           │
+└───────────────┬───────────────┘
+                ↓
+┌───────────────────────────────┐
+│     Scenario Framework        │
+│  historical / hypothetical   │
+│  regime-aware expansion       │
+└───────────────┬───────────────┘
+                ↓
+┌───────────────────────────────┐
+│   Stress Revaluation Engine   │
+│   stress_engine.py            │
+└───────────────┬───────────────┘
+                ↓
+┌───────────────────────────────┐
+│ Capital Impact & Reporting    │
+│ dashboards / PDF summaries   │
+└───────────────────────────────┘
